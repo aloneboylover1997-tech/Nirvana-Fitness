@@ -36,8 +36,22 @@
 .comparegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.comparegrid img,.photoThumb{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:13px;border:1px solid var(--line)}
 .photoitem{padding:12px 0;border-bottom:1px solid var(--line)}.photoitem:last-child{border:0}.photoitem b{display:block;margin-bottom:8px}
 .exercise .exercise-tools{display:flex;gap:3px;flex-wrap:wrap}.exercise{flex-wrap:wrap}.exercise .name{min-width:90px}
+
+#splashScreen{position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:28px;background:radial-gradient(circle at 50% 42%,#073e2d 0%,#03140f 48%,#010705 100%);color:#fff;text-align:center;transition:opacity .45s ease,visibility .45s ease}
+#splashScreen.hide{opacity:0;visibility:hidden;pointer-events:none}
+#splashScreen img{width:min(72vw,340px);height:min(72vw,340px);object-fit:cover;border-radius:28px;box-shadow:0 0 35px #00e68a55,0 0 90px #00a96a33;border:1px solid #4affb277}
+#splashScreen .splash-title{font-size:25px;font-weight:900;letter-spacing:2px;margin:0}
+#splashScreen .splash-sub{font-size:13px;color:#a6e9cb;margin-top:-15px}
+#enterAppBtn{width:min(82vw,300px);padding:15px 22px;border-radius:16px;background:linear-gradient(120deg,#13c98b,#087653);color:#001b11;font-weight:900;font-size:17px;box-shadow:0 10px 30px #00d98b35}
 </style></head>
-<body><div class="wrap">
+<body>
+<div id="splashScreen" role="dialog" aria-label="خوش آمدید به نیرvana فیتنس">
+  <img src="nirvana-logo.png" alt="Nirvana Fitness logo">
+  <p class="splash-title">NIRVANA FITNESS</p>
+  <p class="splash-sub">قدرت، تعادل، پیشرفت</p>
+  <button id="enterAppBtn" type="button">ورود به برنامه <span aria-hidden="true">←</span></button>
+</div>
+<div class="wrap">
 <header class="top"><div class="brand"><div class="logo">✦</div><div><h1>Nirvana Fitness</h1><small>قدرت، تعادل، پیشرفت</small></div></div><button class="iconbtn" id="themeBtn" aria-label="تغییر پوسته">☾</button></header>
 <main>
 <section class="page active" id="home">
@@ -129,5 +143,6 @@ document.getElementById('importBtn').onclick=()=>{try{let x=JSON.parse(document.
 document.getElementById('clearBtn').onclick=()=>{if(confirm('همه اطلاعات این برنامه پاک شود؟')){data={...defaults};save();applyTheme();renderExercises();renderCalendar();toast('اطلاعات پاک شد')}};
 setInterval(()=>{if(data.reminder&&document.visibilityState==='visible'){let now=new Date(),hm=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0'),key=dateKey()+hm;if(hm===data.reminderTime&&data.lastReminder!==key){data.lastReminder=key;save();toast('وقت تمرین یا کمی تحرک رسیده!')}}},15000);
 let todayJ={};persianParts.formatToParts(new Date()).forEach(x=>{if(['year','month','day'].includes(x.type))todayJ[x.type]=Number(x.value)});if(todayJ.year===1405){calendarMonth=todayJ.month;selectedJalaliDay=todayJ.day;}
+document.getElementById('enterAppBtn').onclick=()=>{const splash=document.getElementById('splashScreen');splash.classList.add('hide');setTimeout(()=>splash.remove(),500)};
 applyTheme();document.getElementById('reminderToggle').checked=!!data.reminder;document.getElementById('reminderTime').value=data.reminderTime||'20:00';document.querySelector(`[data-workout="${data.workout}"]`).classList.add('active');renderExercises();renderStats();renderCalendar();loadDayEditor();renderPhotoHistory();document.getElementById('todayText').textContent=new Intl.DateTimeFormat('fa-IR',{weekday:'long',day:'numeric',month:'long'}).format(new Date())+'؛ برای پیشرفت لازم نیست کامل باشی، فقط پیوسته باش.';
 </script></body></html>
