@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#087f62"><title>Nirvana Fitness 2.5</title>
+<meta name="theme-color" content="#087f62"><title>Nirvana Fitness 2.7</title>
 <style>
 :root{--bg:#f3f8f5;--card:#fff;--ink:#17372d;--muted:#71877e;--green:#087f62;--green2:#11a37d;--line:#e3eee8;--soft:#e7f5ee;--shadow:0 12px 32px #123c2910}
 [data-theme=dark]{--bg:#101b18;--card:#192823;--ink:#e8f4ee;--muted:#9bb2a6;--green:#27bd91;--green2:#49d4a8;--line:#2b4038;--soft:#203b31;--shadow:0 12px 32px #0004}
@@ -55,6 +55,33 @@
 .library-video .video-frame{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:11px;background:#07140f}
 .library-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .library-video small{display:block;color:var(--muted);margin-top:8px;font-size:11px;line-height:1.8}
+.video-frame video{display:block;width:100%;height:100%;max-height:360px;object-fit:contain;background:#000;border-radius:14px}.library-video small{display:block;margin-top:8px;line-height:1.8}
+/* Nirvana 2.7 visual polish */
+body{background:radial-gradient(ellipse at 12% 0%,color-mix(in srgb,var(--green) 9%,transparent),transparent 34%),var(--bg)}
+.wrap{padding-top:14px}
+.top{position:sticky;top:0;z-index:6;padding:9px 10px;margin:0 -5px 18px;border:1px solid color-mix(in srgb,var(--line) 72%,transparent);border-radius:18px;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.brand{gap:12px;min-width:0}
+.brand-logo{width:54px;height:54px;flex:none;object-fit:cover;border-radius:15px;border:1px solid #23c98b80;box-shadow:0 5px 18px #00a96a30;animation:logoGlow 4s ease-in-out infinite}
+.brand-copy h1{font-size:18px;letter-spacing:.2px}.brand-copy small{display:block;margin-top:3px}
+@keyframes logoGlow{0%,100%{box-shadow:0 5px 15px #00a96a22}50%{box-shadow:0 5px 23px #00d98b55}}
+.hero{background:linear-gradient(118deg,#063e31 0%,#087f62 52%,#12a77c 100%);background-size:180% 180%;animation:heroShift 13s ease infinite;box-shadow:0 17px 36px #087f6230, inset 0 1px #ffffff20}
+.hero:before{content:"";position:absolute;inset:-60% auto -60% -35%;width:38%;transform:rotate(22deg);background:linear-gradient(90deg,transparent,#ffffff12,transparent);animation:heroShine 9s ease-in-out infinite}
+@keyframes heroShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes heroShine{0%,35%{left:-45%}75%,100%{left:130%}}
+.card,.stat{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.card{box-shadow:0 9px 26px #123c2910,0 1px 2px #123c2908}
+button{transition:transform .16s ease,filter .16s ease,box-shadow .16s ease}
+button:active{transform:scale(.97);filter:brightness(.96)}
+.primary{box-shadow:0 6px 16px color-mix(in srgb,var(--green) 24%,transparent)}
+.nav{backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);background:color-mix(in srgb,var(--card) 91%,transparent);box-shadow:0 -7px 24px #10291b0b}
+.nav button.active{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--green) 18%,transparent)}
+.iconbtn:focus-visible,button:focus-visible{outline:2px solid var(--green2);outline-offset:3px}
+[data-theme=dark] .top{background:color-mix(in srgb,#101b18 88%,transparent);border-color:#ffffff14}
+[data-theme=dark] .card{box-shadow:0 10px 28px #0003}
+@media(hover:hover){.card:hover,.stat:hover{transform:translateY(-2px);box-shadow:0 14px 30px #123c2918}.primary:hover,.secondary:hover,.iconbtn:hover{filter:brightness(1.05)}}
+@media(max-width:420px){.brand-logo{width:49px;height:49px}.brand-copy h1{font-size:16px}.top{margin-bottom:15px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
 </style></head>
 <body>
 <div id="splashScreen" role="dialog" aria-label="خوش آمدید به نیروانا فیتنس">
@@ -64,7 +91,7 @@
   <button id="enterAppBtn" type="button">ورود به برنامه <span aria-hidden="true">←</span></button>
 </div>
 <div class="wrap">
-<header class="top"><div class="brand"><div class="logo">✦</div><div><h1>Nirvana Fitness</h1><small>قدرت، تعادل، پیشرفت</small></div></div><button class="iconbtn" id="themeBtn" aria-label="تغییر پوسته">☾</button></header>
+<header class="top"><div class="brand"><img class="brand-logo" src="nirvana-logo.png" alt="لوگوی نیروانا فیتنس"><div class="brand-copy"><h1>Nirvana Fitness</h1><small>قدرت، تعادل، پیشرفت</small></div></div><button class="iconbtn" id="themeBtn" aria-label="تغییر پوسته">☾</button></header>
 <main>
 <section class="page active" id="home">
 <div class="hero"><div class="hero-row"><div><small>خوش اومدی به مسیر پیشرفتت</small><h2>هر تکرار، یک قدم جلوتر</h2><p id="todayText">امروز رو با یک تمرین خوب بساز.</p></div><div class="ring" id="ring"><strong id="percent">0٪</strong></div></div></div>
@@ -135,31 +162,19 @@ const exerciseGuides={
 };
 // Online demonstrations: streamed from YouTube, never bundled in the APK.
 const exerciseVideos={
-'بارفیکس دست باز':{id:'9yVGh3XbJ34',note:'آموزش فرم پایه بارفیکس از NASM؛ دست‌ها کمی بازتر از عرض شانه قرار می‌گیرند.'},
-'بارفیکس دست جمع':{id:'9yVGh3XbJ34',note:'ویدئو فرم پایه بارفیکس را نشان می‌دهد؛ برای این حرکت فاصله دست‌ها را حدود عرض شانه یا کمی جمع‌تر بگیر.'},
-'شنا معمولی':{id:'YvTXYfEwK1k',note:'نمایش اجرای شنا استاندارد از کتابخانه ورزشی دانشگاه Keele.'},
-'شنا سرشانه':{id:'S0oxUs0mBLs',note:'نمایش اجرای شنا سرشانه یا Pike Push-up.'},
-'پارویی با کوله‌پشتی':{id:'42-XApO8ny0',note:'نمایش پارویی خم؛ حرکت را با کوله‌پشتی و تنه ثابت اجرا کن.'},
-'نشر جانب':{id:'p9ise0cEg38',note:'نمایش اجرای نشر جانب.'},
-'دیپ بین دو صندلی':{id:'Yp9Ds1pXUGM',note:'نمایش حرکت دیپ؛ فقط از تکیه‌گاه کاملاً ثابت و ایمن استفاده کن.'},
-'فیس‌پول':{id:'CU4Xc2qlLC0',note:'آموزش فیس‌پول با کش؛ پیش از شروع، محل اتصال کش را کاملاً محکم کن.'},
-'بالا آوردن پا':{id:'V2eTUL0xT0I',note:'نمایش بالا آوردن پا در حالت خوابیده.'},
-'اسکوات معمولی':{id:'sJ64Dq-fIH8',note:'نمایش اسکوات وزن بدن.'},
-'لانج':{id:'1EpGi-dn3tE',note:'نمایش لانج رو به جلو.'},
-'اسکوات بلغاری':{id:'QJ8CHHY4A3w',note:'نمایش اسکوات بلغاری؛ از صندلی یا نیمکت کاملاً ثابت استفاده کن.'},
-'اسکوات مکث‌دار':{id:'sJ64Dq-fIH8',note:'ویدئو اسکوات پایه را نشان می‌دهد؛ در پایین حرکت ۱ تا ۳ ثانیه مکث کنترل‌شده اضافه کن.'},
-'ساق پا ایستاده':{id:'LFfmd7lzVWQ',note:'نمایش ساق پا ایستاده روی زمین.'},
-'کرانچ دوچرخه':{id:'SNLS8UnEjd4',note:'نمایش اجرای کرانچ دوچرخه.'},
-'پلانک بغل':{id:'yPFBx64XHbs',note:'نمایش پلانک بغل؛ لگن را در امتداد تنه نگه دار.'},
-'پل باسن':{id:'6VP5KFF54N0',note:'نمایش اجرای پل باسن.'}
+'بارفیکس دست باز':{file:'wide-grip-pull-up.mp4',note:'بارفیکس دست باز؛ نمایش مستقیم MP4 بدون یوتیوب.'},
+'پارویی با کوله‌پشتی':{file:'bent-over-row.mp4',note:'الگوی پارویی خم را نشان می‌دهد؛ در برنامه با کوله‌پشتی اجرا کن.'},
+'نشر جانب':{file:'dumbbell-lateral-raise.mp4',note:'نشر جانب با دمبل؛ با وزنه سبک و کنترل‌شده اجرا کن.'},
+'دیپ بین دو صندلی':{file:'weighted-tricep-dips.mp4',note:'نمایش الگوی دیپ روی میله؛ اجرای بین دو صندلی فقط با صندلی‌های کاملاً ثابت و ایمن.'},
+'بالا آوردن پا':{file:'lying-floor-leg-raise.mp4',note:'بالا آوردن پا در حالت خوابیده.'}
 };
+const exerciseVideoBase='https://cdn.jsdelivr.net/gh/namnq/workout-free-videos@v2.0.0/media/video/';
 function normExerciseName(s){return String(s||'').normalize('NFKC').replace(/[\u200c\s]+/g,' ').trim().toLocaleLowerCase('fa')}
 function exerciseSources(){return [{type:'upper',items:data.customUpper||upper},{type:'lower',items:data.customLower||lower}]}
 function syncExerciseLibrary(){if(!Array.isArray(data.exerciseLibrary))data.exerciseLibrary=[];const src=exerciseSources();src.forEach(group=>group.items.forEach(x=>{const name=String(Array.isArray(x)?x[0]:x.name||'').trim();if(!name)return;const key=normExerciseName(name);let found=data.exerciseLibrary.find(z=>z.key===key);if(!found){found={key,name,categories:[],addedAt:new Date().toISOString()};data.exerciseLibrary.push(found)}if(!found.categories.includes(group.type))found.categories.push(group.type);if(exerciseGuides[name])found.guideAvailable=true;}));}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function renderExerciseLibrary(){syncExerciseLibrary();const q=normExerciseName(document.getElementById('librarySearch').value),filter=document.getElementById('libraryFilter').value;let items=data.exerciseLibrary.slice().sort((a,b)=>a.name.localeCompare(b.name,'fa'));items=items.filter(x=>(!q||normExerciseName(x.name).includes(q))&&(filter==='all'||(filter==='pending'&&!exerciseGuides[x.name])||x.categories.includes(filter)));document.getElementById('libraryCount').textContent=fa(items.length)+' حرکت';const box=document.getElementById('libraryList');box.innerHTML='';if(!items.length){box.textContent='حرکتی با این مشخصات پیدا نشد.';return}items.forEach(x=>{const guide=exerciseGuides[x.name],row=document.createElement('div');row.className='library-item';const main=document.createElement('div');main.className='lib-main';const b=document.createElement('b');b.textContent=x.name;const sm=document.createElement('small');sm.textContent=(x.categories.includes('upper')?'بالاتنه':'')+(x.categories.includes('upper')&&x.categories.includes('lower')?' · ':'')+(x.categories.includes('lower')?'پایین‌تنه':'')+' · '+(guide?'آموزش آماده':'آموزش در انتظار تکمیل');if(!guide)sm.classList.add('pending');main.append(b,sm);const btn=document.createElement('button');btn.className='secondary';btn.textContent='آموزش';btn.onclick=()=>showExerciseGuide(x);row.append(main,btn);box.append(row)})}
-function showExerciseGuide(item){const box=document.getElementById('libraryDetail'),g=exerciseGuides[item.name],v=exerciseVideos[item.name];box.hidden=false;let html='<b>'+esc(item.name)+'</b>';if(v){html+='<div class=\'library-video\'><div class=\'video-frame\'><iframe src=\'https://www.youtube-nocookie.com/embed/'+encodeURIComponent(v.id)+'?rel=0\' title=\'آموزش '+esc(item.name)+'\' loading=\'lazy\' referrerpolicy=\'strict-origin-when-cross-origin\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\' allowfullscreen></iframe></div><small>پخش آنلاین · '+esc(v.note)+'</small></div>';}else{html+='<p class=\'pending\'>ویدئوی این حرکت هنوز در کتابخانه آماده نیست.</p>';}if(!g){html+='<p class=\'pending\'>آموزش متنی این حرکت هنوز تکمیل نشده است.</p><p>این حرکت در کتابخانه ذخیره می‌ماند و با حذف آن از برنامه پاک نمی‌شود. برای جلوگیری از نمایش آموزش نادرست، جزئیات تا زمان تکمیل بررسی نمایش داده نمی‌شود.</p>';box.innerHTML=html;return;}html+='<h4>عضلات درگیر</h4><p>'+esc(g.muscles)+'</p><h4>وضعیت شروع</h4><p>'+esc(g.setup)+'</p><h4>مراحل اجرا</h4><p>'+esc(g.steps)+'</p><h4>نکات مهم</h4><p>'+esc(g.cues)+'</p><h4>اشتباهات رایج</h4><p>'+esc(g.mistakes)+'</p>';box.innerHTML=html;}
-
+function showExerciseGuide(item){const box=document.getElementById('libraryDetail'),g=exerciseGuides[item.name],v=exerciseVideos[item.name];box.hidden=false;let html='<b>'+esc(item.name)+'</b>';if(v){html+="<div class='library-video'><div class='video-frame'><video controls playsinline preload='metadata'><source src='"+exerciseVideoBase+encodeURIComponent(v.file)+"' type='video/mp4'>مرورگر شما پخش ویدئو را پشتیبانی نمی‌کند.</video></div><small>پخش مستقیم آنلاین · "+esc(v.note)+"</small></div>";}else{html+="<p class='pending'>برای این حرکت هنوز ویدئوی مستقیمِ تأییدشده در کتابخانه نداریم؛ برای جلوگیری از نمایش حرکت اشتباه، ویدئوی نامرتبط قرار نداده‌ایم.</p>";}if(!g){html+="<p class='pending'>آموزش متنی این حرکت هنوز تکمیل نشده است.</p><p>این حرکت در کتابخانه ذخیره می‌ماند و با حذف آن از برنامه پاک نمی‌شود. برای جلوگیری از نمایش آموزش نادرست، جزئیات تا زمان تکمیل بررسی نمایش داده نمی‌شود.</p>";box.innerHTML=html;return;}html+='<h4>عضلات درگیر</h4><p>'+esc(g.muscles)+'</p><h4>وضعیت شروع</h4><p>'+esc(g.setup)+'</p><h4>مراحل اجرا</h4><p>'+esc(g.steps)+'</p><h4>نکات مهم</h4><p>'+esc(g.cues)+'</p><h4>اشتباهات رایج</h4><p>'+esc(g.mistakes)+'</p>';box.innerHTML=html;}
 function save(){syncExerciseLibrary();localStorage.setItem(KEY,JSON.stringify(data));renderStats()}
 function currentExercises(){return data.workout==='upper'?(data.customUpper||upper):(data.customLower||lower)}
 function toast(t){let el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2200)}
