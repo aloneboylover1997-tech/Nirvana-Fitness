@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>نیروانا فیتنس</title>
+<style>
+body{font-family:Tahoma;background:#f5f8f5;color:#26382d;margin:0}
+header{background:#e6f0e9;padding:22px;border-radius:0 0 22px 22px}
+main{padding:14px}
+.card{background:white;border:1px solid #e1eae3;border-radius:16px;padding:14px;margin:10px 0}
+label{display:block;padding:9px;border-bottom:1px solid #edf1ed}
+button{background:#7da98e;color:white;border:0;border-radius:10px;padding:11px;margin:4px}
+input{padding:7px;width:75px}
+</style>
+</head>
+<body>
+<header>
+<h2>🌿 نیروانا فیتنس</h2>
+آرام، پیوسته، قدرتمند
+</header>
+<main>
+<div class="card">
+<h3>برنامه پایین‌تنه</h3>
+<div id="lower"></div>
+</div>
+<div class="card">
+<h3>برنامه بالاتنه</h3>
+<div id="upper"></div>
+</div>
+<button onclick="save()">ثبت تمرین امروز</button>
+<div class="card">
+<h3>ثبت وزن و دور کمر</h3>
+وزن <input id="w" type="number" step=".1">
+دور کمر <input id="c" type="number" step=".1">
+<button onclick="localStorage.setItem('w',w.value);localStorage.setItem('c',c.value)">ذخیره</button>
+</div>
+<div class="card">
+<h3>زمان‌سنج تمرین</h3>
+<h2 id="clock">00:00</h2>
+<button onclick="start()">شروع</button>
+<button onclick="stop()">پایان</button>
+<p id="total"></p>
+</div>
+<div class="card">
+<h3>تقویم تمرین ماه جاری</h3>
+<p id="calendar"></p>
+<b id="count"></b>
+</div>
+</main>
+<script>
+const lower=[
+['اسکوات معمولی','۴ × ۲۰'],
+['لانج','۳ × ۱۲ هر پا'],
+['اسکوات بلغاری','۳ × ۱۲ هر پا'],
+['اسکوات مکث‌دار','۳ × ۱۲'],
+['ساق پا ایستاده','۴ × ۲۵'],
+['کرانچ دوچرخه','۳ × ۳۰'],
+['پلانک بغل','۳ × ۴۵ ثانیه هر سمت'],
+['پل باسن','۳ × ۱۵']
+];
+const upper=[
+['بارفیکس دست باز','۱۳، ۱۰، ۹، ۸، ۷'],
+['شنا معمولی','۴ × ۱۵'],
+['بارفیکس دست جمع','تعداد ثبت شود'],
+['شنا سرشانه','تعداد ثبت شود'],
+['پارویی با کوله‌پشتی','تعداد ثبت شود'],
+['نشر جانب','تعداد ثبت شود'],
+['دیپ بین دو صندلی','تعداد ثبت شود'],
+['فیس پول','تعداد ثبت شود'],
+['بالا آوردن پا','تعداد ثبت شود'],
+['درازنشست','تعداد ثبت شود'],
+['پلانک','۳ ست']
+];
+function render(a,id){
+document.getElementById(id).innerHTML=a.map((x,i)=>
+`<label><input type="checkbox"> ${x[0]} — ${x[1]}</label>`).join('');
+}
+render(lower,'lower');
+render(upper,'upper');
+
+function save(){
+let d=new Date().toISOString().slice(0,10);
+localStorage.setItem('work-'+d,'1');
+draw();
+alert('تمرین امروز ثبت شد 🌱');
+}
+function draw(){
+let d=new Date(),n=new Date(d.getFullYear(),d.getMonth()+1,0).getDate(),h='',k=0;
+for(let i=1;i<=n;i++){
+let key=new Date(d.getFullYear(),d.getMonth(),i).toISOString().slice(0,10);
+let v=localStorage.getItem('work-'+key);
+if(v)k++;
+h+=i+(v?'🟢':'⚪')+'　';
+}
+document.getElementById('calendar').textContent=h;
+document.getElementById('count').textContent='روزهای تمرین: '+k;
+}
+draw();
+
+let st=0,iv,total=Number(localStorage.getItem('total')||0);
+function start(){
+if(st)return;
+st=Date.now();
+iv=setInterval(()=>{
+let s=Math.floor((Date.now()-st)/1000);
+clock.textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+},500);
+}
+function stop(){
+if(!st)return;
+total+=Math.floor((Date.now()-st)/1000);
+st=0;
+clearInterval(iv);
+localStorage.setItem('total',total);
+document.getElementById('total').textContent='مجموع تمرین: '+Math.floor(total/60)+' دقیقه';
+}
+w.value=localStorage.getItem('w')||'';
+c.value=localStorage.getItem('c')||'';
+</script>
+</body>
+</html>
