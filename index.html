@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#087f62"><title>Nirvana Fitness 2.4</title>
+<meta name="theme-color" content="#087f62"><title>Nirvana Fitness 2.5</title>
 <style>
 :root{--bg:#f3f8f5;--card:#fff;--ink:#17372d;--muted:#71877e;--green:#087f62;--green2:#11a37d;--line:#e3eee8;--soft:#e7f5ee;--shadow:0 12px 32px #123c2910}
 [data-theme=dark]{--bg:#101b18;--card:#192823;--ink:#e8f4ee;--muted:#9bb2a6;--green:#27bd91;--green2:#49d4a8;--line:#2b4038;--soft:#203b31;--shadow:0 12px 32px #0004}
@@ -51,6 +51,10 @@
 .library-detail{margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:15px;background:var(--bg);line-height:1.9;font-size:13px}
 .library-detail h4{margin:10px 0 4px;color:var(--green);font-size:13px}.library-detail p{margin:4px 0}.pending{color:#a36b18}
 .nav button{padding:8px 9px;font-size:11px}
+.library-video{margin:14px 0 16px;padding:10px;border:1px solid var(--line);border-radius:15px;background:var(--card)}
+.library-video .video-frame{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:11px;background:#07140f}
+.library-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.library-video small{display:block;color:var(--muted);margin-top:8px;font-size:11px;line-height:1.8}
 </style></head>
 <body>
 <div id="splashScreen" role="dialog" aria-label="خوش آمدید به نیروانا فیتنس">
@@ -129,12 +133,32 @@ const exerciseGuides={
 'پلانک بغل':{muscles:'مورب‌های شکم، عرضی شکم، سرینی میانی و عضلات تثبیت‌کننده شانه',setup:'روی یک ساعد قرار بگیر؛ آرنج زیر شانه و پاها روی هم یا یکی جلوتر برای تعادل.',steps:'۱) لگن را از زمین بلند کن. ۲) سر، تنه و لگن را در یک خط نگه دار. ۳) زمان مشخص را حفظ کن و سمت دیگر را تکرار کن.',cues:'شانه از گوش دور؛ لگن نچرخد؛ اگر سخت است زانوها را روی زمین بگذار.',mistakes:'افتادن لگن، چرخش تنه و قرار دادن آرنج دور از زیر شانه.'},
 'پل باسن':{muscles:'سرینی بزرگ، همسترینگ و عضلات مرکزی',setup:'به پشت دراز بکش، زانوها خم و کف پاها روی زمین به عرض لگن.',steps:'۱) شکم را کمی منقبض کن. ۲) لگن را بالا ببر تا شانه، لگن و زانو تقریباً در یک خط قرار گیرند. ۳) باسن را منقبض کن و آهسته پایین بیا.',cues:'از قوس دادن کمر برای بالا رفتن خودداری کن؛ فشار از پاشنه و عضلات باسن باشد.',mistakes:'باز کردن بیش از حد کمر، فاصله نامناسب پاها و رها کردن سریع لگن.'}
 };
+// Online demonstrations: streamed from YouTube, never bundled in the APK.
+const exerciseVideos={
+'بارفیکس دست باز':{id:'9yVGh3XbJ34',note:'آموزش فرم پایه بارفیکس از NASM؛ دست‌ها کمی بازتر از عرض شانه قرار می‌گیرند.'},
+'بارفیکس دست جمع':{id:'9yVGh3XbJ34',note:'ویدئو فرم پایه بارفیکس را نشان می‌دهد؛ برای این حرکت فاصله دست‌ها را حدود عرض شانه یا کمی جمع‌تر بگیر.'},
+'شنا معمولی':{id:'YvTXYfEwK1k',note:'نمایش اجرای شنا استاندارد از کتابخانه ورزشی دانشگاه Keele.'},
+'شنا سرشانه':{id:'S0oxUs0mBLs',note:'نمایش اجرای شنا سرشانه یا Pike Push-up.'},
+'پارویی با کوله‌پشتی':{id:'42-XApO8ny0',note:'نمایش پارویی خم؛ حرکت را با کوله‌پشتی و تنه ثابت اجرا کن.'},
+'نشر جانب':{id:'p9ise0cEg38',note:'نمایش اجرای نشر جانب.'},
+'دیپ بین دو صندلی':{id:'Yp9Ds1pXUGM',note:'نمایش حرکت دیپ؛ فقط از تکیه‌گاه کاملاً ثابت و ایمن استفاده کن.'},
+'فیس‌پول':{id:'CU4Xc2qlLC0',note:'آموزش فیس‌پول با کش؛ پیش از شروع، محل اتصال کش را کاملاً محکم کن.'},
+'بالا آوردن پا':{id:'V2eTUL0xT0I',note:'نمایش بالا آوردن پا در حالت خوابیده.'},
+'اسکوات معمولی':{id:'sJ64Dq-fIH8',note:'نمایش اسکوات وزن بدن.'},
+'لانج':{id:'1EpGi-dn3tE',note:'نمایش لانج رو به جلو.'},
+'اسکوات بلغاری':{id:'QJ8CHHY4A3w',note:'نمایش اسکوات بلغاری؛ از صندلی یا نیمکت کاملاً ثابت استفاده کن.'},
+'اسکوات مکث‌دار':{id:'sJ64Dq-fIH8',note:'ویدئو اسکوات پایه را نشان می‌دهد؛ در پایین حرکت ۱ تا ۳ ثانیه مکث کنترل‌شده اضافه کن.'},
+'ساق پا ایستاده':{id:'LFfmd7lzVWQ',note:'نمایش ساق پا ایستاده روی زمین.'},
+'کرانچ دوچرخه':{id:'SNLS8UnEjd4',note:'نمایش اجرای کرانچ دوچرخه.'},
+'پلانک بغل':{id:'yPFBx64XHbs',note:'نمایش پلانک بغل؛ لگن را در امتداد تنه نگه دار.'},
+'پل باسن':{id:'6VP5KFF54N0',note:'نمایش اجرای پل باسن.'}
+};
 function normExerciseName(s){return String(s||'').normalize('NFKC').replace(/[\u200c\s]+/g,' ').trim().toLocaleLowerCase('fa')}
 function exerciseSources(){return [{type:'upper',items:data.customUpper||upper},{type:'lower',items:data.customLower||lower}]}
 function syncExerciseLibrary(){if(!Array.isArray(data.exerciseLibrary))data.exerciseLibrary=[];const src=exerciseSources();src.forEach(group=>group.items.forEach(x=>{const name=String(Array.isArray(x)?x[0]:x.name||'').trim();if(!name)return;const key=normExerciseName(name);let found=data.exerciseLibrary.find(z=>z.key===key);if(!found){found={key,name,categories:[],addedAt:new Date().toISOString()};data.exerciseLibrary.push(found)}if(!found.categories.includes(group.type))found.categories.push(group.type);if(exerciseGuides[name])found.guideAvailable=true;}));}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function renderExerciseLibrary(){syncExerciseLibrary();const q=normExerciseName(document.getElementById('librarySearch').value),filter=document.getElementById('libraryFilter').value;let items=data.exerciseLibrary.slice().sort((a,b)=>a.name.localeCompare(b.name,'fa'));items=items.filter(x=>(!q||normExerciseName(x.name).includes(q))&&(filter==='all'||(filter==='pending'&&!exerciseGuides[x.name])||x.categories.includes(filter)));document.getElementById('libraryCount').textContent=fa(items.length)+' حرکت';const box=document.getElementById('libraryList');box.innerHTML='';if(!items.length){box.textContent='حرکتی با این مشخصات پیدا نشد.';return}items.forEach(x=>{const guide=exerciseGuides[x.name],row=document.createElement('div');row.className='library-item';const main=document.createElement('div');main.className='lib-main';const b=document.createElement('b');b.textContent=x.name;const sm=document.createElement('small');sm.textContent=(x.categories.includes('upper')?'بالاتنه':'')+(x.categories.includes('upper')&&x.categories.includes('lower')?' · ':'')+(x.categories.includes('lower')?'پایین‌تنه':'')+' · '+(guide?'آموزش آماده':'آموزش در انتظار تکمیل');if(!guide)sm.classList.add('pending');main.append(b,sm);const btn=document.createElement('button');btn.className='secondary';btn.textContent='آموزش';btn.onclick=()=>showExerciseGuide(x);row.append(main,btn);box.append(row)})}
-function showExerciseGuide(item){const box=document.getElementById('libraryDetail'),g=exerciseGuides[item.name];box.hidden=false;if(!g){box.innerHTML='<b>'+esc(item.name)+'</b><p class="pending">آموزش این حرکت هنوز در کتابخانه آماده نیست.</p><p>این حرکت به‌درستی در کتابخانه ذخیره شده و با حذف آن از برنامه پاک نمی‌شود. برای جلوگیری از نمایش آموزش نادرست، جزئیات تا زمان تکمیل بررسی نمایش داده نمی‌شود.</p>';return}box.innerHTML='<b>'+esc(item.name)+'</b><h4>عضلات درگیر</h4><p>'+esc(g.muscles)+'</p><h4>وضعیت شروع</h4><p>'+esc(g.setup)+'</p><h4>مراحل اجرا</h4><p>'+esc(g.steps)+'</p><h4>نکات مهم</h4><p>'+esc(g.cues)+'</p><h4>اشتباهات رایج</h4><p>'+esc(g.mistakes)+'</p>'}
+function showExerciseGuide(item){const box=document.getElementById('libraryDetail'),g=exerciseGuides[item.name],v=exerciseVideos[item.name];box.hidden=false;let html='<b>'+esc(item.name)+'</b>';if(v){html+='<div class=\'library-video\'><div class=\'video-frame\'><iframe src=\'https://www.youtube-nocookie.com/embed/'+encodeURIComponent(v.id)+'?rel=0\' title=\'آموزش '+esc(item.name)+'\' loading=\'lazy\' referrerpolicy=\'strict-origin-when-cross-origin\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\' allowfullscreen></iframe></div><small>پخش آنلاین · '+esc(v.note)+'</small></div>';}else{html+='<p class=\'pending\'>ویدئوی این حرکت هنوز در کتابخانه آماده نیست.</p>';}if(!g){html+='<p class=\'pending\'>آموزش متنی این حرکت هنوز تکمیل نشده است.</p><p>این حرکت در کتابخانه ذخیره می‌ماند و با حذف آن از برنامه پاک نمی‌شود. برای جلوگیری از نمایش آموزش نادرست، جزئیات تا زمان تکمیل بررسی نمایش داده نمی‌شود.</p>';box.innerHTML=html;return;}html+='<h4>عضلات درگیر</h4><p>'+esc(g.muscles)+'</p><h4>وضعیت شروع</h4><p>'+esc(g.setup)+'</p><h4>مراحل اجرا</h4><p>'+esc(g.steps)+'</p><h4>نکات مهم</h4><p>'+esc(g.cues)+'</p><h4>اشتباهات رایج</h4><p>'+esc(g.mistakes)+'</p>';box.innerHTML=html;}
 
 function save(){syncExerciseLibrary();localStorage.setItem(KEY,JSON.stringify(data));renderStats()}
 function currentExercises(){return data.workout==='upper'?(data.customUpper||upper):(data.customLower||lower)}
