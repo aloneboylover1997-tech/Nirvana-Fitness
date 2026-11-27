@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#087f62"><title>Nirvana Fitness</title>
+<meta name="theme-color" content="#087f62"><title>Nirvana Fitness 2.8</title>
 <style>
 :root{--bg:#f3f8f5;--card:#fff;--ink:#17372d;--muted:#71877e;--green:#087f62;--green2:#11a37d;--line:#e3eee8;--soft:#e7f5ee;--shadow:0 12px 32px #123c2910}
 [data-theme=dark]{--bg:#101b18;--card:#192823;--ink:#e8f4ee;--muted:#9bb2a6;--green:#27bd91;--green2:#49d4a8;--line:#2b4038;--soft:#203b31;--shadow:0 12px 32px #0004}
@@ -14,7 +14,7 @@
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.primary{background:var(--green);color:white;padding:11px 16px;border-radius:13px;font-weight:650}.secondary{background:var(--soft);color:var(--green);padding:11px 14px;border-radius:13px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{display:flex;flex-direction:column;gap:6px;margin:9px 0}.field label{font-size:12px;color:var(--muted)}.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:11px;outline:none}.field textarea{min-height:90px;direction:ltr;text-align:left}.history{font-size:13px;color:var(--muted);line-height:1.9}.bar{height:8px;background:var(--line);border-radius:10px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--green2));width:0;transition:.3s}
 .timer{text-align:center;padding:18px}.time{font-size:42px;font-weight:750;font-variant-numeric:tabular-nums;letter-spacing:1px}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;text-align:center}.day{padding:9px 0;border-radius:10px;font-size:12px;background:var(--bg);color:var(--muted)}.day.hit{background:var(--soft);color:var(--green);font-weight:700}.day.today{outline:2px solid var(--green)}
-.nav{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--line);display:flex;justify-content:center;gap:6px;padding:9px 8px calc(9px + env(safe-area-inset-bottom));z-index:5}.nav button{background:transparent;color:var(--muted);padding:8px 13px;border-radius:12px;font-size:12px}.nav button.active{background:var(--soft);color:var(--green);font-weight:700}
+.nav{overflow-x:auto;justify-content:flex-start;white-space:nowrap;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}.nav{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--line);display:flex;justify-content:center;gap:6px;padding:9px 8px calc(9px + env(safe-area-inset-bottom));z-index:5}.nav button{background:transparent;color:var(--muted);padding:8px 13px;border-radius:12px;font-size:12px}.nav button.active{background:var(--soft);color:var(--green);font-weight:700}
 .page{display:none;animation:rise .25s ease}.page.active{display:block}@keyframes rise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}.toast{position:fixed;top:15px;left:50%;transform:translateX(-50%);background:#17372d;color:white;padding:10px 16px;border-radius:12px;opacity:0;pointer-events:none;transition:.25s;z-index:10}.toast.show{opacity:1}
 @media(max-width:420px){.stats{gap:7px}.stat{padding:12px}.stat b{font-size:18px}.grid2{grid-template-columns:1fr}.hero h2{font-size:20px}}
 
@@ -37,29 +37,98 @@
 .photoitem{padding:12px 0;border-bottom:1px solid var(--line)}.photoitem:last-child{border:0}.photoitem b{display:block;margin-bottom:8px}
 .exercise .exercise-tools{display:flex;gap:3px;flex-wrap:wrap}.exercise{flex-wrap:wrap}.exercise .name{min-width:90px}
 
-#splashScreen{position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:28px;background:radial-gradient(circle at 50% 42%,#073e2d 0%,#03140f 48%,#010705 100%);color:#fff;text-align:center;transition:opacity .45s ease,visibility .45s ease}
+#splashScreen{position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:28px;background:radial-gradient(circle at 50% 42%,#073e2d 0%,#03140f 48%,#010705 100%);color:#fff;text-align:center;transition:opacity .45s ease,visibility .45s ease}
 #splashScreen.hide{opacity:0;visibility:hidden;pointer-events:none}
 #splashScreen img{width:min(72vw,340px);height:min(72vw,340px);object-fit:cover;border-radius:28px;box-shadow:0 0 35px #00e68a55,0 0 90px #00a96a33;border:1px solid #4affb277}
 #splashScreen .splash-title{font-size:25px;font-weight:900;letter-spacing:2px;margin:0}
 #splashScreen .splash-sub{font-size:13px;color:#a6e9cb;margin-top:-15px}
 #enterAppBtn{width:min(82vw,300px);padding:15px 22px;border-radius:16px;background:linear-gradient(120deg,#13c98b,#087653);color:#001b11;font-weight:900;font-size:17px;box-shadow:0 10px 30px #00d98b35}
+
+.library-search{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.library-search input,.library-search select{min-width:0;flex:1;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:11px}
+.library-item{display:flex;align-items:center;gap:10px;padding:13px 0;border-bottom:1px solid var(--line)}
+.library-item:last-child{border-bottom:0}.library-item .lib-main{flex:1;min-width:0}.library-item b{display:block;font-size:14px}.library-item small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.library-detail{margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:15px;background:var(--bg);line-height:1.9;font-size:13px}
+.library-detail h4{margin:10px 0 4px;color:var(--green);font-size:13px}.library-detail p{margin:4px 0}.pending{color:#a36b18}
+.nav button{padding:8px 9px;font-size:11px}
+.library-video{margin:14px 0 16px;padding:10px;border:1px solid var(--line);border-radius:15px;background:var(--card)}
+.library-video .video-frame{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:11px;background:#07140f}
+.library-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.library-video small{display:block;color:var(--muted);margin-top:8px;font-size:11px;line-height:1.8}
+.video-frame video{display:block;width:100%;height:100%;max-height:360px;object-fit:contain;background:#000;border-radius:14px}.library-video small{display:block;margin-top:8px;line-height:1.8}
+/* Nirvana 2.7 visual polish */
+body{background:radial-gradient(ellipse at 12% 0%,color-mix(in srgb,var(--green) 9%,transparent),transparent 34%),var(--bg)}
+.wrap{padding-top:14px;position:relative;z-index:1}
+.top{position:sticky;top:0;z-index:6;padding:9px 10px;margin:0 -5px 18px;border:1px solid color-mix(in srgb,var(--line) 72%,transparent);border-radius:18px;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.brand{gap:12px;min-width:0}
+.brand-logo{width:54px;height:54px;flex:none;object-fit:cover;border-radius:15px;border:1px solid #23c98b80;box-shadow:0 5px 18px #00a96a30;animation:logoGlow 4s ease-in-out infinite}
+.brand-copy h1{font-size:18px;letter-spacing:.2px}.brand-copy small{display:block;margin-top:3px}
+@keyframes logoGlow{0%,100%{box-shadow:0 5px 15px #00a96a22}50%{box-shadow:0 5px 23px #00d98b55}}
+.hero{background:linear-gradient(118deg,#063e31 0%,#087f62 52%,#12a77c 100%);background-size:180% 180%;animation:heroShift 13s ease infinite;box-shadow:0 17px 36px #087f6230, inset 0 1px #ffffff20}
+.hero:before{content:"";position:absolute;inset:-60% auto -60% -35%;width:38%;transform:rotate(22deg);background:linear-gradient(90deg,transparent,#ffffff12,transparent);animation:heroShine 9s ease-in-out infinite}
+@keyframes heroShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes heroShine{0%,35%{left:-45%}75%,100%{left:130%}}
+.card,.stat{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.card{box-shadow:0 9px 26px #123c2910,0 1px 2px #123c2908}
+button{transition:transform .16s ease,filter .16s ease,box-shadow .16s ease}
+button:active{transform:scale(.97);filter:brightness(.96)}
+.primary{box-shadow:0 6px 16px color-mix(in srgb,var(--green) 24%,transparent)}
+.nav{backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);background:color-mix(in srgb,var(--card) 91%,transparent);box-shadow:0 -7px 24px #10291b0b}
+.nav button.active{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--green) 18%,transparent)}
+.iconbtn:focus-visible,button:focus-visible{outline:2px solid var(--green2);outline-offset:3px}
+[data-theme=dark] .top{background:color-mix(in srgb,#101b18 88%,transparent);border-color:#ffffff14}
+[data-theme=dark] .card{box-shadow:0 10px 28px #0003}
+@media(hover:hover){.card:hover,.stat:hover{transform:translateY(-2px);box-shadow:0 14px 30px #123c2918}.primary:hover,.secondary:hover,.iconbtn:hover{filter:brightness(1.05)}}
+@media(max-width:420px){.brand-logo{width:49px;height:49px}.brand-copy h1{font-size:16px}.top{margin-bottom:15px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+
+/* Nirvana Fitness 2.8 — commissioned original rainforest artwork bundled locally */
+.brand-copy h1{position:relative;display:inline-block;overflow:hidden;background:linear-gradient(100deg,var(--ink) 0%,var(--ink) 38%,#8df5c8 50%,var(--ink) 62%,var(--ink) 100%);background-size:240% 100%;background-clip:text;-webkit-background-clip:text;color:transparent;animation:titleSweep 8s ease-in-out infinite;text-shadow:0 0 18px #11a37d18}
+@keyframes titleSweep{0%,65%,100%{background-position:100% 0}78%{background-position:0 0}}
+.nature-backdrop{position:fixed;inset:0;z-index:0;pointer-events:none;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:.30;transition:background-image .4s ease,opacity .3s ease}
+body[data-appearance="nature"]{background:linear-gradient(115deg,#061d16d9,#0b2c20a6),var(--bg);background-attachment:fixed}
+body[data-appearance="nature"] .nature-backdrop{opacity:.54}
+body[data-appearance="nature"] .top{background:color-mix(in srgb,#0b261d 78%,transparent);border-color:#9beac333;color:#effff6}
+body[data-appearance="nature"] .brand-copy h1{color:#effff6;background:none;text-shadow:0 0 14px #4affb277}
+body[data-appearance="nature"] .brand-copy small{color:#c5ead8}
+body[data-appearance="nature"] .card,body[data-appearance="nature"] .stat{background:color-mix(in srgb,var(--card) 82%,#0b3a29 18%);backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px);border-color:#8be3b52b}
+body[data-appearance="nature"] .nav{background:color-mix(in srgb,#09251b 90%,transparent)}
+body[data-appearance="nature"] .nav button{color:#c1e4d2}
+body[data-appearance="nature"] .nav button.active{background:#1a6348;color:#fff}
+.nature-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.nutrition-hero{background:linear-gradient(120deg,#064b39,#0c9870);color:#fff;border-radius:20px;padding:17px;margin-bottom:12px;box-shadow:0 12px 30px #087f6225}
+.nutrition-hero h3{margin:0 0 6px;font-size:18px}.nutrition-hero p{margin:0;font-size:12px;opacity:.88;line-height:1.8}
+.nutri-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.nutri-stat{padding:12px;border-radius:15px;background:var(--soft);color:var(--green);text-align:center}.nutri-stat b{font-size:20px;display:block}.nutri-stat small{font-size:11px;color:var(--muted)}
+.meal-card{border:1px solid var(--line);border-radius:15px;padding:13px;margin:10px 0;background:var(--bg)}
+.meal-card h4{margin:0 0 8px;color:var(--green)}.meal-card ul{margin:0;padding-right:18px;font-size:13px;line-height:2}.meal-meta{font-size:11px;color:var(--muted);margin-top:8px}
+.food-chips{display:flex;gap:6px;flex-wrap:wrap}.food-chip{background:var(--soft);color:var(--green);padding:5px 9px;border-radius:20px;font-size:11px}
+.nutri-note{font-size:11px;line-height:1.8;color:var(--muted)}
+.online-step{border:1px solid var(--line);border-radius:13px;padding:10px;margin:8px 0;background:var(--bg)}.online-step img{width:100%;max-height:230px;object-fit:contain;border-radius:9px;background:#fff}.online-step small{display:block;color:var(--muted);margin-top:5px}
+.workout-clock{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--soft);padding:11px 13px;border-radius:14px;margin-top:12px}
+.workout-clock strong{font-size:22px;font-variant-numeric:tabular-nums;color:var(--green)}
+@media(max-width:420px){.nutri-grid{grid-template-columns:1fr 1fr}.workout-clock{align-items:flex-start}}
+@media(prefers-reduced-motion:reduce){.brand-copy h1{animation:none;background:none;color:var(--ink)}}
+
 </style></head>
 <body>
-<div id="splashScreen" role="dialog" aria-label="خوش آمدید به نیرvana فیتنس">
+<div id="splashScreen" role="dialog" aria-label="خوش آمدید به نیروانا فیتنس">
   <img src="nirvana-logo.png" alt="Nirvana Fitness logo">
   <p class="splash-title">NIRVANA FITNESS</p>
   <p class="splash-sub">قدرت، تعادل، پیشرفت</p>
   <button id="enterAppBtn" type="button">ورود به برنامه <span aria-hidden="true">←</span></button>
 </div>
+<div class="nature-backdrop" id="natureBackdrop" aria-hidden="true"></div>
 <div class="wrap">
-<header class="top"><div class="brand"><div class="logo">✦</div><div><h1>Nirvana Fitness</h1><small>قدرت، تعادل، پیشرفت</small></div></div><button class="iconbtn" id="themeBtn" aria-label="تغییر پوسته">☾</button></header>
+<header class="top"><div class="brand"><img class="brand-logo" src="nirvana-logo.png" alt="لوگوی نیروانا فیتنس"><div class="brand-copy"><h1>Nirvana Fitness</h1><small>قدرت، تعادل، پیشرفت</small></div></div><button class="iconbtn" id="themeBtn" aria-label="تغییر پوسته">☾</button></header>
 <main>
 <section class="page active" id="home">
 <div class="hero"><div class="hero-row"><div><small>خوش اومدی به مسیر پیشرفتت</small><h2>هر تکرار، یک قدم جلوتر</h2><p id="todayText">امروز رو با یک تمرین خوب بساز.</p></div><div class="ring" id="ring"><strong id="percent">0٪</strong></div></div></div>
 <div class="stats"><div class="stat"><b id="weekCount">۰</b><span>جلسه این ماه</span></div><div class="stat"><b id="weightStat">۵۷</b><span>وزن (کیلوگرم)</span></div><div class="stat"><b id="streak">۰</b><span>حرکت تکمیل‌شده</span></div></div>
 <div class="sectionhead"><h3>تمرین امروز</h3><span class="muted" id="sessionLabel">روز بالاتنه</span></div>
 <div class="tabs"><button class="tab active" data-workout="upper">بالاتنه</button><button class="tab" data-workout="lower">پایین‌تنه</button></div>
-<div class="card" style="margin-top:10px"><div id="exerciseList"></div><div class="actions"><button class="secondary" id="addExerciseBtn">＋ افزودن حرکت</button><button class="secondary" id="manageExerciseHint">راهنمای ویرایش</button></div><div class="bar"><i id="progressBar"></i></div><div class="actions"><button class="primary" id="finishBtn">ثبت جلسه تمرین</button><button class="secondary" id="resetBtn">پاک‌کردن تیک‌ها</button></div></div>
+<div class="card" style="margin-top:10px"><div id="exerciseList"></div><div class="actions"><button class="secondary" id="addExerciseBtn">＋ افزودن حرکت</button><button class="secondary" id="manageExerciseHint">راهنمای ویرایش</button></div><div class="bar"><i id="progressBar"></i></div><div class="workout-clock"><div><small class="muted" id="workoutState">هنوز تمرین را شروع نکرده‌ای</small><br><strong id="workoutTimerDisplay">00:00:00</strong></div><div class="actions" style="margin:0"><button class="primary" id="startWorkoutBtn">شروع تمرین</button><button class="secondary" id="finishBtn">پایان تمرین</button></div></div><div class="actions"><button class="secondary" id="resetBtn">پاک‌کردن تیک‌ها</button></div></div>
 <div class="sectionhead"><h3>یادآوری امروز</h3></div><div class="card"><div class="muted">به خودت فشار بی‌جا نیار؛ کیفیت اجرای حرکت از تعداد مهم‌تره. بین ست‌ها استراحت کافی داشته باش.</div></div>
 </section>
 <section class="page" id="calendar">
@@ -71,78 +140,4 @@
 <div class="sectionhead"><h3 id="selectedDateTitle">برنامه روز انتخاب‌شده</h3><span class="muted">قابل ویرایش</span></div>
 <div class="card"><div class="field"><label>برنامه این روز</label><select id="dayType"><option value="">بدون برنامه</option><option value="upper">تمرین بالاتنه</option><option value="lower">تمرین پایین‌تنه</option><option value="rest">استراحت؛ تمرین ندارم</option><option value="other">برنامه دیگر</option></select></div>
 <div class="field"><label>یادداشت روز</label><textarea id="dayNote" style="direction:rtl;text-align:right;min-height:70px" placeholder="یادداشتت را اینجا بنویس..."></textarea></div>
-<div class="actions"><button class="primary" id="saveDayPlan">ذخیره برنامه روز</button><button class="secondary" id="clearDayPlan">پاک‌کردن برنامه</button></div><p class="muted">اطلاعات روی همین گوشی و مرورگر ذخیره می‌شود.</p></div>
-<div class="sectionhead"><h3>آمار این ماه</h3></div><div class="card"><b id="monthSessions">۰ جلسه</b><div class="muted">جلسه‌هایی که از صفحه خانه ثبت می‌کنی اینجا هم شمرده می‌شوند.</div></div></section>
-<section class="page" id="measure"><div class="sectionhead"><h3>دفتر تصویری پیشرفت بدن</h3><span class="muted">ثبت ماهانه</span></div>
-<div class="card"><p class="muted">در پایان هر ماه عکس‌ها را با نور، فاصله و حالت مشابه ثبت کن. عکس‌ها فقط در همین مرورگر ذخیره می‌شوند.</p>
-<div class="field"><label>ماه ثبت عکس</label><input id="photoMonth" type="month"></div>
-<div class="grid2"><div class="field"><label>عکس بالاتنه (روبه‌رو یا پشت)</label><input id="upperPhoto" type="file" accept="image/*"></div><div class="field"><label>عکس پایین‌تنه</label><input id="lowerPhoto" type="file" accept="image/*"></div></div>
-<div class="field"><label>یادداشت این ماه</label><textarea id="photoNote" placeholder="مثلاً تغییرات تمرین، انرژی و حس خودت..."></textarea></div>
-<button class="primary" id="savePhotos">ذخیره عکس‌های این ماه</button><p class="muted" id="photoStatus">برای مقایسه، حداقل یک عکس انتخاب کن.</p></div>
-<div class="sectionhead"><h3>مقایسه دو ماه</h3></div><div class="card"><div class="grid2"><div class="field"><label>ماه قبلی</label><select id="compareA"></select></div><div class="field"><label>ماه جدید</label><select id="compareB"></select></div></div><button class="primary" id="comparePhotos">نمایش مقایسه</button><div id="comparisonView" class="comparegrid"></div><p class="muted">این بخش عکس‌ها را کنار هم نمایش می‌دهد؛ تحلیل دقیق تغییرات ظاهری را می‌توانی با فرستادن همین دو عکس در گفت‌وگو انجام بدهی. از عکس به‌تنهایی نمی‌توان مقدار عضله یا درصد چربی را دقیق اندازه گرفت.</p></div>
-<div class="sectionhead"><h3>سوابق ماهانه</h3></div><div class="card" id="photoHistory">هنوز عکسی ثبت نشده.</div></section>
-<section class="page" id="tools"><div class="sectionhead"><h3>ابزار تمرین</h3></div><div class="card timer"><div class="muted">کرنومتر استراحت</div><div class="time" id="timerDisplay">00:00</div><div class="actions" style="justify-content:center"><button class="primary" id="timerStart">شروع</button><button class="secondary" id="timerReset">ریست</button></div></div><div class="sectionhead"><h3>پشتیبان‌گیری و تنظیمات</h3></div><div class="card"><div class="field"><label>یادآوری داخل برنامه</label><div><input type="checkbox" id="reminderToggle"> فعال باشد</div></div><div class="field"><label>ساعت یادآوری (وقتی برنامه باز است)</label><input id="reminderTime" type="time" value="20:00"></div><p class="muted">یادآوری نسخه فعلی فقط هنگام باز بودن برنامه بررسی می‌شود؛ برای اعلان واقعی در پس‌زمینه باید بخش اندروید ارتقا پیدا کند.</p><div class="actions"><button class="primary" id="exportBtn">ساخت نسخه پشتیبان</button><button class="secondary" id="importBtn">بازیابی پشتیبان</button></div><div class="field"><label>متن پشتیبان JSON</label><textarea id="backupText" placeholder="برای بازیابی، متن پشتیبان را اینجا قرار بده..."></textarea></div><button class="secondary" id="clearBtn">پاک‌کردن همه اطلاعات برنامه</button></div></section>
-</main></div>
-<nav class="nav"><button class="active" data-page="home">⌂ خانه</button><button data-page="calendar">▦ تقویم</button><button data-page="measure">◉ پیشرفت بدن</button><button data-page="tools">⚙ ابزارها</button></nav><div class="toast" id="toast"></div>
-<script>
-const KEY='nirvana_fitness_v2';
-const defaults={theme:'light',workout:'upper',checks:{},sessions:[],measurements:[],dayPlans:{},customUpper:null,customLower:null,photoMonths:[],reminder:false,reminderTime:'20:00',lastReminder:''};
-let data={...defaults};try{data={...defaults,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){}
-const upper=[['بارفیکس دست باز','۵ ست: ۱۳، ۱۰، ۹، ۸، ۷ تکرار'],['شنا معمولی','۴ × ۱۵'],['بارفیکس دست جمع','طبق توان با فرم صحیح'],['شنا سرشانه','طبق توان با فرم صحیح'],['پارویی با کوله‌پشتی','کنترل‌شده و بدون تاب‌دادن بدن'],['نشر جانب','سبک و کنترل‌شده'],['دیپ بین دو صندلی','فقط در صورت ایمن بودن صندلی‌ها'],['فیس‌پول','تمرکز روی عضلات پشت شانه'],['بالا آوردن پا','کنترل حرکت و کمر']];
-const lower=[['اسکوات معمولی','۴ × ۲۰'],['لانج','۳ × ۱۲ هر پا'],['اسکوات بلغاری','۳ × ۱۲ هر پا'],['اسکوات مکث‌دار','۳ × ۱۲'],['ساق پا ایستاده','۴ × ۲۵'],['کرانچ دوچرخه','۳ × ۳۰'],['پلانک بغل','۳ × ۴۵ ثانیه هر سمت'],['پل باسن','۳ × ۱۵']];
-function save(){localStorage.setItem(KEY,JSON.stringify(data));renderStats()}
-function currentExercises(){return data.workout==='upper'?(data.customUpper||upper):(data.customLower||lower)}
-function toast(t){let el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2200)}
-function fa(n){return Number(n).toLocaleString('fa-IR')}
-function dateKey(d=new Date()){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
-function renderExercises(){let list=document.getElementById('exerciseList'),arr=currentExercises();list.innerHTML='';arr.forEach((x,i)=>{let key=data.workout+'_'+i,done=!!data.checks[key],row=document.createElement('div');row.className='exercise'+(done?' done':'');let check=document.createElement('input');check.type='checkbox';check.checked=done;check.onchange=e=>{data.checks[key]=e.target.checked;save();renderExercises()};let name=document.createElement('span');name.className='name';name.textContent=x[0];let small=document.createElement('small');small.textContent=x[1];name.appendChild(small);let tools=document.createElement('div');tools.className='exercise-tools';[['ویرایش','edit'],['↑','up'],['↓','down'],['حذف','delete']].forEach(([label,act])=>{let b=document.createElement('button');b.className='editorbtn';b.textContent=label;b.onclick=()=>editExercise(i,act);tools.appendChild(b)});row.append(check,name,tools);list.appendChild(row)});document.getElementById('sessionLabel').textContent=data.workout==='upper'?'روز بالاتنه':'روز پایین‌تنه';let count=arr.filter((_,i)=>data.checks[data.workout+'_'+i]).length,p=arr.length?Math.round(count/arr.length*100):0;document.getElementById('percent').textContent=fa(p)+'٪';document.getElementById('ring').style.setProperty('--p',p+'%');document.getElementById('progressBar').style.width=p+'%'}
-function editExercise(i,act){let arr=currentExercises();if(act==='delete'){if(!confirm('این حرکت حذف شود؟'))return;arr.splice(i,1)}else if(act==='up'&&i>0){[arr[i-1],arr[i]]=[arr[i],arr[i-1]]}else if(act==='down'&&i<arr.length-1){[arr[i+1],arr[i]]=[arr[i],arr[i+1]]}else if(act==='edit'){let n=prompt('نام حرکت:',arr[i][0]);if(n===null)return;let d=prompt('ست و تکرار / توضیح:',arr[i][1]);if(d===null)return;arr[i]=[n.trim()||arr[i][0],d.trim()]}storeCurrentExercises(arr);renderExercises();save()}
-function storeCurrentExercises(arr){if(data.workout==='upper')data.customUpper=arr;else data.customLower=arr}
-document.getElementById('addExerciseBtn').onclick=()=>{let n=prompt('نام حرکت جدید:');if(!n||!n.trim())return;let d=prompt('تعداد ست و تکرار یا توضیح حرکت:','۳ × ۱۲')||'';let a=currentExercises().slice();a.push([n.trim(),d.trim()]);storeCurrentExercises(a);renderExercises();save()};
-document.getElementById('manageExerciseHint').onclick=()=>toast('برای هر حرکت از دکمه‌های ویرایش، جابه‌جایی و حذف استفاده کن');
-function renderStats(){let arr=currentExercises();let count=arr.filter((_,i)=>data.checks[data.workout+'_'+i]).length;document.getElementById('streak').textContent=fa(count);let now=new Date(),month=data.sessions.filter(s=>s.slice(0,7)===dateKey().slice(0,7)).length;document.getElementById('weekCount').textContent=fa(month);document.getElementById('monthSessions').textContent=fa(month)+' جلسه';let last=data.measurements.at(-1);document.getElementById('weightStat').textContent=last?.weight?fa(last.weight):'—'}
-const jalaliMonths=['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
-let calendarMonth=9,selectedJalaliDay=4;
-const persianParts=new Intl.DateTimeFormat('en-US-u-ca-persian-nu-latn',{year:'numeric',month:'numeric',day:'numeric'});
-function build1405(){let map={};for(let t=Date.UTC(2026,2,19);t<=Date.UTC(2027,2,22);t+=86400000){let dt=new Date(t),o={};persianParts.formatToParts(dt).forEach(x=>{if(['year','month','day'].includes(x.type))o[x.type]=Number(x.value)});if(o.year===1405)map[o.month+'-'+o.day]={weekday:(dt.getUTCDay()+1)%7};}return map}
-const jalaliMap=build1405();
-function jalaliKey(m,d){return '1405-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0')}
-function getMonthDays(m){let a=[];for(let d=1;d<=31;d++)if(jalaliMap[m+'-'+d])a.push(d);return a}
-function selectedKey(){return jalaliKey(calendarMonth,selectedJalaliDay)}
-function loadDayEditor(){let p=data.dayPlans?.[selectedKey()]||{};document.getElementById('selectedDateTitle').textContent=jalaliMonths[calendarMonth-1]+' '+fa(selectedJalaliDay)+'، ۱۴۰۵';document.getElementById('dayType').value=p.type||'';document.getElementById('dayNote').value=p.note||''}
-function renderCalendar(){let g=document.getElementById('calendarGrid');g.innerHTML='';document.getElementById('monthLabel').textContent=jalaliMonths[calendarMonth-1]+' ۱۴۰۵';['ش','ی','د','س','چ','پ','ج'].forEach(x=>{let e=document.createElement('div');e.className='day';e.textContent=x;g.appendChild(e)});let days=getMonthDays(calendarMonth),first=jalaliMap[calendarMonth+'-1']?.weekday??0;for(let i=0;i<first;i++){let b=document.createElement('div');b.className='day blank';g.appendChild(b)}days.forEach(d=>{let el=document.createElement('button'),key=jalaliKey(calendarMonth,d),plan=data.dayPlans?.[key]||{};el.type='button';el.className='day'+(selectedJalaliDay===d?' selected':'')+(plan.type?' planned-'+plan.type:'');el.textContent=fa(d);if(plan.note&&!plan.type)el.classList.add('planned-other');el.onclick=()=>{selectedJalaliDay=d;renderCalendar();loadDayEditor()};g.appendChild(el)});let n=data.sessions.filter(k=>k.startsWith('1405-'+String(calendarMonth).padStart(2,'0')+'-')).length;document.getElementById('monthSessions').textContent=fa(n)+' جلسه'}
-document.getElementById('prevMonth').onclick=()=>{if(calendarMonth>1){calendarMonth--;selectedJalaliDay=1;renderCalendar();loadDayEditor()}};
-document.getElementById('nextMonth').onclick=()=>{if(calendarMonth<12){calendarMonth++;selectedJalaliDay=1;renderCalendar();loadDayEditor()}};
-document.getElementById('saveDayPlan').onclick=()=>{let key=selectedKey(),type=document.getElementById('dayType').value,note=document.getElementById('dayNote').value.trim();data.dayPlans=data.dayPlans||{};if(type||note)data.dayPlans[key]={type,note};else delete data.dayPlans[key];save();renderCalendar();loadDayEditor();toast('برنامه این روز ذخیره شد')};
-document.getElementById('clearDayPlan').onclick=()=>{data.dayPlans=data.dayPlans||{};delete data.dayPlans[selectedKey()];document.getElementById('dayType').value='';document.getElementById('dayNote').value='';save();renderCalendar();loadDayEditor();toast('برنامه این روز پاک شد')};
-
-// Monthly body-photo journal: images stored in IndexedDB, separate from the JSON backup.
-const PHOTO_DB='nirvana_body_photos', PHOTO_STORE='months';
-function openPhotoDB(){return new Promise((resolve,reject)=>{let r=indexedDB.open(PHOTO_DB,1);r.onupgradeneeded=()=>r.result.createObjectStore(PHOTO_STORE,{keyPath:'month'});r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)})}
-async function photoGetAll(){let db=await openPhotoDB();return new Promise((res,rej)=>{let r=db.transaction(PHOTO_STORE).objectStore(PHOTO_STORE).getAll();r.onsuccess=()=>res(r.result||[]);r.onerror=()=>rej(r.error)})}
-async function photoPut(item){let db=await openPhotoDB();return new Promise((res,rej)=>{let r=db.transaction(PHOTO_STORE,'readwrite').objectStore(PHOTO_STORE).put(item);r.onsuccess=()=>res();r.onerror=()=>rej(r.error)})}
-function fileData(file){return new Promise((res,rej)=>{if(!file)return res(null);let r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file)})}
-async function renderPhotoHistory(){let items=(await photoGetAll()).sort((a,b)=>a.month.localeCompare(b.month));let box=document.getElementById('photoHistory');box.innerHTML='';let opts=items.map(x=>x.month);['compareA','compareB'].forEach(id=>{let s=document.getElementById(id),old=s.value;s.innerHTML='';opts.forEach(m=>{let o=document.createElement('option');o.value=m;o.textContent=m;s.appendChild(o)});if(opts.includes(old))s.value=old});if(!items.length){box.textContent='هنوز عکسی ثبت نشده.';return}items.forEach(x=>{let d=document.createElement('div');d.className='photoitem';let b=document.createElement('b');b.textContent=x.month;d.appendChild(b);let row=document.createElement('div');row.className='comparegrid';['upper','lower'].forEach(k=>{if(x[k]){let im=document.createElement('img');im.className='photoThumb';im.src=x[k];im.alt=k==='upper'?'عکس بالاتنه':'عکس پایین‌تنه';row.appendChild(im)}});d.appendChild(row);if(x.note){let p=document.createElement('p');p.className='muted';p.textContent=x.note;d.appendChild(p)}box.appendChild(d)})}
-document.getElementById('savePhotos').onclick=async()=>{try{let month=document.getElementById('photoMonth').value;if(!month){toast('ماه را انتخاب کن');return}let upperImg=await fileData(document.getElementById('upperPhoto').files[0]),lowerImg=await fileData(document.getElementById('lowerPhoto').files[0]);if(!upperImg&&!lowerImg){toast('حداقل یک عکس انتخاب کن');return}let items=await photoGetAll(),old=items.find(x=>x.month===month)||{month};await photoPut({...old,upper:upperImg||old.upper||null,lower:lowerImg||old.lower||null,note:document.getElementById('photoNote').value.trim()});document.getElementById('photoStatus').textContent='عکس‌های '+month+' در همین مرورگر ذخیره شدند.';await renderPhotoHistory();toast('عکس‌های ماه ذخیره شدند')}catch(e){toast('ذخیره عکس انجام نشد؛ فضای مرورگر را بررسی کن')}};
-document.getElementById('comparePhotos').onclick=async()=>{let a=document.getElementById('compareA').value,b=document.getElementById('compareB').value,items=await photoGetAll(),A=items.find(x=>x.month===a),B=items.find(x=>x.month===b),v=document.getElementById('comparisonView');v.innerHTML='';if(!A||!B||a===b){toast('دو ماه متفاوت انتخاب کن');return}['upper','lower'].forEach(k=>{let col=document.createElement('div');let title=document.createElement('b');title.textContent=k==='upper'?'بالاتنه':'پایین‌تنه';col.appendChild(title);let row=document.createElement('div');row.className='comparegrid';[A,B].forEach(x=>{let im=document.createElement('img');im.alt=x.month;im.src=x[k]||'';if(!x[k]){im.style.display='none'}row.appendChild(im)});col.appendChild(row);let cap=document.createElement('p');cap.className='muted';cap.textContent=a+'  ←  '+b;col.appendChild(cap);v.appendChild(col)})};
-
-function renderMeasures(){let h=document.getElementById('measureHistory');if(!data.measurements.length){h.textContent='هنوز اندازه‌ای ثبت نشده.';return}h.innerHTML=data.measurements.slice().reverse().map(x=>`${x.date} — وزن: ${x.weight||'—'} کیلوگرم | دور کمر: ${x.waist||'—'} سانتی‌متر`).join('<br>')}
-document.querySelectorAll('[data-workout]').forEach(b=>b.onclick=()=>{data.workout=b.dataset.workout;document.querySelectorAll('[data-workout]').forEach(x=>x.classList.toggle('active',x===b));renderExercises();save()});
-document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-page]').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===b.dataset.page));if(b.dataset.page==='calendar')renderCalendar();if(b.dataset.page==='measure'){renderPhotoHistory()}});
-document.getElementById('finishBtn').onclick=()=>{let v={};persianParts.formatToParts(new Date()).forEach(x=>{if(['year','month','day'].includes(x.type))v[x.type]=Number(x.value)});let k=v.year===1405?jalaliKey(v.month,v.day):dateKey();if(!data.sessions.includes(k))data.sessions.push(k);save();renderCalendar();toast('جلسه تمرین ثبت شد؛ آفرین!')};
-document.getElementById('resetBtn').onclick=()=>{currentExercises().forEach((_,i)=>delete data.checks[data.workout+'_'+i]);save();renderExercises();toast('تیک‌ها پاک شدند')};
-document.getElementById('themeBtn').onclick=()=>{data.theme=data.theme==='dark'?'light':'dark';applyTheme();save()};
-function applyTheme(){document.documentElement.dataset.theme=data.theme;document.getElementById('themeBtn').textContent=data.theme==='dark'?'☀':'☾'}
-
-let seconds=0,interval=null;function showTime(){document.getElementById('timerDisplay').textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0')}
-document.getElementById('timerStart').onclick=()=>{if(interval){clearInterval(interval);interval=null;document.getElementById('timerStart').textContent='ادامه';}else{interval=setInterval(()=>{seconds++;showTime()},1000);document.getElementById('timerStart').textContent='توقف'}};
-document.getElementById('timerReset').onclick=()=>{clearInterval(interval);interval=null;seconds=0;showTime();document.getElementById('timerStart').textContent='شروع'};
-document.getElementById('reminderToggle').onchange=e=>{data.reminder=e.target.checked;save()};document.getElementById('reminderTime').onchange=e=>{data.reminderTime=e.target.value;save()};
-document.getElementById('exportBtn').onclick=()=>{document.getElementById('backupText').value=JSON.stringify(data,null,2);document.getElementById('backupText').select();toast('متن پشتیبان آماده شد؛ آن را کپی و نگهداری کن')};
-document.getElementById('importBtn').onclick=()=>{try{let x=JSON.parse(document.getElementById('backupText').value);if(!x||typeof x!=='object')throw 0;data={...defaults,...x};save();applyTheme();renderExercises();renderCalendar();toast('پشتیبان بازیابی شد')}catch(e){toast('متن پشتیبان معتبر نیست')}};
-document.getElementById('clearBtn').onclick=()=>{if(confirm('همه اطلاعات این برنامه پاک شود؟')){data={...defaults};save();applyTheme();renderExercises();renderCalendar();toast('اطلاعات پاک شد')}};
-setInterval(()=>{if(data.reminder&&document.visibilityState==='visible'){let now=new Date(),hm=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0'),key=dateKey()+hm;if(hm===data.reminderTime&&data.lastReminder!==key){data.lastReminder=key;save();toast('وقت تمرین یا کمی تحرک رسیده!')}}},15000);
-let todayJ={};persianParts.formatToParts(new Date()).forEach(x=>{if(['year','month','day'].includes(x.type))todayJ[x.type]=Number(x.value)});if(todayJ.year===1405){calendarMonth=todayJ.month;selectedJalaliDay=todayJ.day;}
-document.getElementById('enterAppBtn').onclick=()=>{const splash=document.getElementById('splashScreen');splash.classList.add('hide');setTimeout(()=>splash.remove(),500)};
-applyTheme();document.getElementById('reminderToggle').checked=!!data.reminder;document.getElementById('reminderTime').value=data.reminderTime||'20:00';document.querySelector(`[data-workout="${data.workout}"]`).classList.add('active');renderExercises();renderStats();renderCalendar();loadDayEditor();renderPhotoHistory();document.getElementById('todayText').textContent=new Intl.DateTimeFormat('fa-IR',{weekday:'long',day:'numeric',month:'long'}).format(new Date())+'؛ برای پیشرفت لازم نیست کامل باشی، فقط پیوسته باش.';
-</script></body></html>
+<div class="actions"><button class="primary" id="saveDayPlan">ذخیره برنامه
